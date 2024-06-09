@@ -1,0 +1,85 @@
+<% include('../layouts/header.ejs') %>
+<link rel="stylesheet" type="text/css" href="/adminNewUser.css">
+
+<% include('../layouts/center.ejs') %>
+<div class="center-container">
+    <div class="add-user-container">
+        <h1>Add New User</h1>
+
+        <form action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <input type="text" name="name" id="name" placeholder="Enter Name" required>
+            <span id="nameError" class="error"></span>
+            <input type="email" name="email" id="email" placeholder="Enter Email" required>
+            <span id="emailError" class="error"></span>
+            <input type="password" name="password" id="password" placeholder="Enter Password" required>
+            <span id="passwordError" class="error"></span>
+            <input type="text" name="mobile" id="mno" placeholder="Enter Mobile" required>
+            <span id="mobileError" class="error"></span>
+            <input type="file" name="image" required>
+            <input type="submit" value="Add user">
+        </form>
+
+        <% if (typeof message !== 'undefined') { %>
+            <p><%= message %></p>
+        <% } %>
+
+        <a href="/admin/dashboard">Back</a>
+    </div>
+</div>
+
+<script>
+    function validateForm(){
+       
+     var name=document.getElementById('name').value
+     var email=document.getElementById('email').value
+     var password=document.getElementById('password').value
+     var mobile=document.getElementById('mno').value
+
+
+     const nameRegex =/^[a-zA-Z][a-zA-Z0-9]*$/
+    if (!nameRegex.test(name)) {
+       document.getElementById('nameError').innerHTML='Name should start with alphabet'
+       return false
+    }else{
+        document.getElementById('nameError').innerHTML=''
+    }
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@['gmail']+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(email)){
+        document.getElementById('emailError').innerHTML='  Please enter a valid Email address'
+        return false
+    }else{
+        document.getElementById('emailError').innerHTML=''
+    }
+    
+    if(password.includes(' ')){
+        document.getElementById('passwordError').innerHTML='Password should not contain spaces'
+        return false
+    }else{
+        document.getElementById('passwordError').innerHTML=''
+    }
+    const mobileRegex=/^\d+$/
+    if(!mobileRegex.test(mobile)){
+        document.getElementById('mobileError').innerHTML='Mobile number should contain only numbers'
+        return false
+    }else{
+        document.getElementById('mobileError').innerHTML=''
+    }
+
+
+
+     return true
+    }
+
+
+    
+
+
+
+
+</script>
+
+
+
+
+<% include('../layouts/footer.ejs') %>

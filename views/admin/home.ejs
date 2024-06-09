@@ -1,0 +1,36 @@
+<% include('../layouts/header.ejs') %>
+<link rel="stylesheet" type="text/css" href="/adminHome.css">
+
+<% include('../layouts/center.ejs') %>
+<div class="center-container">
+    <div class="dashboard-container">
+        <h1>Welcome, <%= admin.name %></h1>
+
+        <table>
+            <tr>
+                <td>Photo</td>
+                <td><img src="<%= admin.image %>" width="100px" height="100px" alt="<%= admin.image %>"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><%= admin.name %></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><%= admin.email %></td>
+            </tr>
+            <tr>
+                <td>Mobile Number</td>
+                <td><%= admin.mobile %></td>
+            </tr>
+        </table>
+
+        <br>
+        <a href="/admin/dashboard">Dashboard</a>
+
+        <br>
+        <a href="/admin/logout">Logout</a>
+    </div>
+</div>
+
+<% include('../layouts/footer.ejs') %>

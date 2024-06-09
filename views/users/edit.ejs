@@ -1,0 +1,69 @@
+<% include('../layouts/header.ejs') %>
+<link rel="stylesheet" type="text/css" href="/userEdit.css">
+
+<% include('../layouts/center.ejs') %>
+<div class="center-container">
+    <div class="edit-container">
+        <img src="<%= user.image %>" width="100px" height="100px" alt="<%= user.image %>">
+
+        <form action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <input type="file" name="image">
+            <input type="hidden" name="userId" value="<%= user._id %>">
+            
+            <input type="text" name="name" id="name" value="<%= user.name %>" placeholder="Enter name" required>
+            <span id="nameError" class="error"></span>
+            
+            <input type="email" name="email" id="email" value="<%= user.email %>" placeholder="Enter email" required>
+            <span id="emailError" class="error"></span>
+            
+            <input type="text" name="mobile" id="mno" value="<%= user.mobile %>" placeholder="Enter mobile number" required>
+            <span id="mobileError" class="error"></span>
+            
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</div>
+
+
+<script>
+ function validateForm(){
+       
+       var name=document.getElementById('name').value
+       var email=document.getElementById('email').value
+       var mobile=document.getElementById('mno').value
+  
+  
+       const nameRegex =/^[a-zA-Z][a-zA-Z0-9]*$/
+    if (!nameRegex.test(name)) {
+       document.getElementById('nameError').innerHTML='Name should start with alphabet'
+       return false
+    }else{
+        document.getElementById('nameError').innerHTML=''
+    }
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@['gmail']+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(email)){
+        document.getElementById('emailError').innerHTML='  Please enter a valid Email address'
+        return false
+    }else{
+        document.getElementById('emailError').innerHTML=''
+    }
+    
+      const mobileRegex=/^\d+$/
+      if(!mobileRegex.test(mobile)){
+          document.getElementById('mobileError').innerHTML='Mobile number should contain only numbers'
+          return false
+      }else{
+          document.getElementById('mobileError').innerHTML=''
+      }
+  
+  
+  
+       return true
+      }
+</script>
+
+
+
+
+<% include('../layouts/footer.ejs') %>

@@ -1,0 +1,36 @@
+
+<% include('../layouts/header.ejs') %>
+<link rel="stylesheet" type="text/css" href="/userHome.css">
+
+<% include('../layouts/center.ejs') %>
+<div class="center-container">
+    <div class="home-container">
+        <h1>Welcome, <%= user.name %></h1>
+        <table class="user-table" width="50%">
+            <tr>
+                <td>User Photo</td>
+                <td><img class="user-image" src="<%= user.image %>" alt="<%= user.image %>" width="100px" height="100px"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><%= user.name %></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><%= user.email %></td>
+            </tr>
+            <tr>
+                <td>Mobile Number</td>
+                <td><%= user.mobile %></td>
+            </tr>
+        </table>
+
+        <p>Hello, <%= user.name %>!</p>
+
+        <a class="logout-link" href="/logout">Logout</a>
+        <br>
+        <a href="/edit?id=<%= user._id %>">Edit</a>
+    </div>
+</div>
+
+<% include('../layouts/footer.ejs') %>
